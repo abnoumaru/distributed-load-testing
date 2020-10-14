@@ -1,2 +1,1 @@
-locustio==0.8.1
-pyzmq==17.0.0
+locust==1.2.3
