@@ -19,9 +19,11 @@ FROM python:3.8-alpine
 COPY requirements.txt requirements.txt
 RUN apk --no-cache add --virtual=.build-dep \
       build-base \
-    && apk --no-cache add bash libzmq libffi-dev ca-certificates wget \
+    && apk --no-cache add bash libzmq libressl-dev musl-dev libffi-dev ca-certificates wget \
+    && /usr/local/bin/python -m pip install --upgrade pip \
     && pip install -r requirements.txt \
     && apk del .build-dep
+
 
 # COPY licenses, sample tasks and entrypoint into root
 COPY app /

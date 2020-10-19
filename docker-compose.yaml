@@ -5,9 +5,12 @@ services:
         environment:
             - "LOCUST_MODE=master"
             - "TARGET_HOST=https://site.example.com"
-            - "LOCUST_SCRIPT=/locust-tasks/tasks_elb.py"
+            - "LOCUST_SCRIPT=/locust-tasks/tasks_iap.py"
+            - "GOOGLE_APPLICATION_CREDENTIALS=/key.json"
+            - "CLIENT_ID=${CLIENT_ID}"
         volumes:
-            - ./locust-image/app/locust-tasks/tasks_elb.py:/locust-tasks/tasks_elb.py
+            - ./locust-image/app/locust-tasks/tasks_iap.py:/locust-tasks/tasks_iap.py
+            - ${GOOGLE_APPLICATION_CREDENTIALS}:/key.json:ro
         networks:
             locust-nw:
         ports:
@@ -19,9 +22,12 @@ services:
             - "LOCUST_MASTER=master"
             - "LOCUST_MASTER_WEB=8089"
             - "TARGET_HOST=https://site.example.com"
-            - "LOCUST_SCRIPT=/locust-tasks/tasks_elb.py"
+            - "LOCUST_SCRIPT=/locust-tasks/tasks_iap.py"
+            - "GOOGLE_APPLICATION_CREDENTIALS=/key.json"
+            - "CLIENT_ID=${CLIENT_ID}"
         volumes:
-            - ./locust-image/app/locust-tasks/tasks_elb.py:/locust-tasks/tasks_elb.py
+            - ./locust-image/app/locust-tasks/tasks_iap.py:/locust-tasks/tasks_iap.py
+            - ${GOOGLE_APPLICATION_CREDENTIALS}:/key.json:ro
         networks:
             locust-nw:
 

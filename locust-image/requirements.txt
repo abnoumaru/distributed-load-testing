@@ -1,1 +1,5 @@
 locust==1.2.3
+requests
+google-auth
+pyjwt
+cryptography
